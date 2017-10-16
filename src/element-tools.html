@@ -1,0 +1,195 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../bower_components/paper-chip/paper-chip.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="element-tools">
+  <template>
+
+    <style include="shared-styles"></style>
+    <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+    <style>
+      section {
+        background-color: var(--tint-white);
+      }
+
+      paper-chip {
+        display: inline;
+      }
+
+      .grid {
+        display: grid;
+        grid-gap: 1rem;
+        grid-auto-rows: minmax(5rem, auto);
+      }
+
+      @media (max-width: 599px) {
+        .grid {
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+
+      @media (min-width: 600px) {
+        .grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (min-width: 900px) {
+        .grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      paper-chip{
+        display: block;
+        margin: 0;
+      }
+
+      h4{
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+      }
+
+    </style>
+
+    <section style="min-height: 10rem;" class="tint-white">
+      <div class="large center center-text">
+        <div>
+          <span class="emoji">⚒️<span>
+        </div>
+        <h2>Tools</h2>
+        <p>Tools come and go but these are the ones I use at the moment</p>
+      </div>
+
+      <div class="large center">
+
+        <div class="grid center-text">
+        
+          <div>
+            <h4>Design</h4>
+            <template is="dom-repeat" items="[[tools1]]"> 
+              <paper-chip no-hover label="[[item.label]]">
+                <img class="chip-image" slot="avatar" src="[[item.img]]" alt="[[item.label]]">
+              </paper-chip>
+            </template>
+          </div>
+
+          <div>
+            <h4>Insight/Analytics</h4>
+             <template is="dom-repeat" items="[[tools2]]"> 
+              <paper-chip no-hover label="[[item.label]]">
+                <img class="chip-image" slot="avatar" src="[[item.img]]" alt="[[item.label]]">
+              </paper-chip>
+            </template>
+          </div>
+
+          <div>
+            <h4>Code</h4>
+            <template is="dom-repeat" items="[[tools3]]"> 
+              <paper-chip no-hover label="[[item.label]]">
+                <img class="chip-image" slot="avatar" src="[[item.img]]" alt="[[item.label]]">
+              </paper-chip>
+            </template>
+          </div>
+
+      </div>
+
+    </section>
+
+  </template>
+
+  <script>
+
+     class ElementTools extends Polymer.Element {
+      static get is() {
+        return 'element-tools';
+      }
+
+      static get properties() {
+        return {
+          tools1: { 
+            type: Array,
+            value: () => {
+              return [
+                {
+                  "label": "Sketch",
+                  "img": "images/tools/sketch.png"
+                },
+                {
+                  "label": "Invision",
+                  "img": "images/tools/invision.png"
+                },
+                {
+                  "label": "Zeplin",
+                  "img": "images/tools/zeplin.png"
+                }, 
+                {
+                  "label": "Origami",
+                  "img": "images/tools/origami.png"
+                }, 
+                {
+                  "label": "Keynote",
+                  "img": "images/tools/keynote.png"
+                },
+                {
+                  "label": "Principle",
+                  "img": "images/tools/principle.png"
+                }
+              ]
+            }
+          },
+          tools2: { 
+            type: Array,
+            value: () => {
+              return [ 
+                {
+                  "label": "Google Analytics",
+                  "img": "images/tools/ga.png"
+                },
+                {
+                  "label": "Hotjar",
+                  "img": "images/tools/hotjar.png"
+                },
+                {
+                  "label": "Optimizely",
+                  "img": "images/tools/optimizely.png"
+                }, 
+                {
+                  "label": "Google Tag Manager",
+                  "img": "images/tools/gtm.png"
+                }
+              ]
+            }
+          },
+          tools3: { 
+            type: Array,
+            value: () => {
+              return [ 
+                {
+                  "label": "Github",
+                  "img": "images/tools/github.png"
+                },
+                {
+                  "label": "Sublime Text",
+                  "img": "images/tools/sublime.png"
+                },
+                {
+                  "label": "Polymer",
+                  "img": "images/tools/polymer.png"
+                }, 
+                {
+                  "label": "Firebase",
+                  "img": "images/tools/firebase.png"
+                }
+              ]
+            }
+          }
+        }
+      }
+     }
+
+   window.customElements.define(ElementTools.is, ElementTools);
+  </script>
+
+</dom-module>

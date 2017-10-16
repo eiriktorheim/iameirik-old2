@@ -1,0 +1,143 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="element-education">
+  <template>
+
+    <style include="shared-styles"></style>
+    <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+
+
+    <custom-style>
+      <style is="custom-style">
+        section {
+          background-color: var(--tint-very-light-grey);
+        }
+
+        paper-chip {
+          display: inline;
+        }
+
+
+        .grid {
+          display: grid;
+          grid-gap: 1rem;
+          grid-auto-rows: minmax(5rem, auto);
+          margin-top: 1.5rem;
+        }
+
+        @media (max-width: 599px) {
+          .grid {
+            grid-template-columns: repeat(1, 1fr);
+          }
+        }
+
+        @media (min-width: 600px) {
+          .grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (min-width: 900px) {
+          .grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        .card-content {
+          margin: 1.5rem 1rem;
+        }
+
+        h3,
+        h4,
+        h5 {
+          margin: 0;
+          padding: 0;
+          line-height: 2rem;
+        }
+
+        h3 {
+          line-height: 2.75rem;
+        }
+
+        h4{
+          font-weight: 100;
+          font-size: var(--txt-m)
+        }
+        .location{
+          color: var(--tint-medium-grey);
+        }
+      </style>
+
+    </custom-style>
+
+
+    <section style="min-height: 10em;" class="tint-white">
+
+      <div style="margin: 0 auto;" class="medium center center-text">
+        <div>
+          <span class="emoji">🎓<span>
+        </div>
+        <h2>Education</h2>
+        <p>Two bachelor degrees in four years of study</p>
+      </div>
+
+      <div class="large grid center">
+        <template is="dom-repeat" items="[[edu]]">
+          <div class="card">
+            <div class="card-content">
+              <h5>[[item.period]]</h5>
+              <h3>[[item.level]]</h3>
+              <h4>[[item.institute]]</h4>
+              <h4 class="location">[[item.location]]</h4>
+            </div>
+          </div>
+        </template>
+        
+      </div>
+
+    </section>
+
+  </template>
+
+  <script>
+
+  class ElementEducation extends Polymer.Element {
+      static get is() {
+        return 'element-education';
+      }
+
+      static get properties() {
+        return {
+          edu: {
+            type: Array,
+            value: () => {
+              return [
+                {
+                  "period": "2011-2012",
+                  "level": "Bachelor in Graphic Design",
+                  "institute": "Swansea Metropolitan University",
+                  "location": "Wales, UK"
+                },
+                {
+                  "period": "2005-2008",
+                  "level": "Bachelor in Media, ICT and Design",
+                  "institute": "Volda University College",
+                  "location": "Volda, Norway"
+                }
+              ]
+            }
+          }
+        }
+      }
+  } 
+
+    window.customElements.define(ElementEducation.is, ElementEducation);
+
+  
+  </script>
+
+</dom-module>

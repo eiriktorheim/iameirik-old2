@@ -1,0 +1,345 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<!-- shared styles for all views -->
+<dom-module id="shared-styles">
+  <template>
+    <style>
+       :host {
+        --tint-white: #ffffff;
+        --tint-very-light-grey: #f9f9fb;
+        --tint-light-grey: #EAEAEB;
+        --tint-medium-grey: #AFB1B3;
+        --tint-dark-grey: #626569;
+        --tint-very-dark-grey: #31353A;
+        --tint-almost-black: #1C2026;
+        --tint-black: #15191F;
+        --tint-primary: #f42c65;
+        --tint-secondary: #0faece;
+        --tint-primary-hover: #C72857;
+        /*0faece #2196F3;*/
+        --spacing-medium: 4em;
+
+        --txt-xl: 3.625rem;
+        --txt-l: 2.5rem;
+        --txt-ml: 1.5rem;
+        --txt-m: 1.125rem;
+        --txt-s: 1rem;
+        --txt-xs: 0.875rem;
+        --txt-xxs: 0.75rem;
+
+        --width-small:35rem;
+        --width-medium:40rem;
+        --width-large:60rem;
+        --width-full:100vw;
+      }
+
+
+      body {
+        background-color: var(--tint-light-grey);
+      }
+
+      a {
+        color: var(--tint-primary);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-weight: bold;
+        margin: 0;
+      }
+
+      p,
+      li {
+        line-height: 2;
+      }
+
+      h1 {
+        font-size: var(--txt-xl);
+        line-height: 5rem;
+        margin-bottom: 1rem;
+      }
+
+      h2 {
+        font-size: var(--txt-l);
+      }
+
+      h3 {
+        font-size: 1.625rem;
+        margin-bottom: 1.5rem;
+      }
+
+      h4 {
+        font-size: 1.5rem;
+      }
+
+      h5{
+        font-size: 1.125rem;
+      }
+
+      p,
+      li,
+      span {
+        font-size: 1.125rem;
+        font-weight: lighter;
+      }
+
+      p{
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      li{
+        margin-bottom: 0.25rem;
+      }
+
+      .ingress {
+        font-size: 1.5rem;
+        font-weight: 100;
+      }
+
+      .button {
+        display: inline-block;
+        background: var(--tint-primary);
+        border: 0;
+        border-radius: 5px;
+        color: #fff;
+        font-size: .74rem;
+        line-height: 1rem;
+        font-weight: 100;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background .3s;
+        padding: 0.75rem 1.5rem;
+        letter-spacing: .1rem;
+        /*border-radius: 6.25rem;*/
+        text-decoration: none;
+      }
+
+      .button:hover{
+        background: var(--tint-primary-hover);
+      }
+
+      img,
+      video,
+      iron-image {
+        width: 100%;
+        height: auto;
+      }
+
+      section {
+        padding: 6rem 1rem;
+      }
+
+
+      .small {
+        max-width: var(--width-small);
+      }
+
+      .medium {
+        max-width: var(--width-medium);
+      }
+
+      .large {
+        max-width: var(--width-large);
+      }
+
+      .full {
+        width: var(--width-full);
+      }
+
+      .circle {
+        display: inline-block;
+        width: 4rem;
+        height: 4rem;
+        text-align: center;
+        color: #555;
+        border-radius: 50%;
+        background: #ddd;
+        font-size: 1.875rem;
+        line-height: 4rem;
+      }
+
+      .card {
+        background-color: white;
+        border-radius: 0.25rem;
+        border: 1px solid #EAEAEB;
+      }
+
+      .card {
+        box-shadow: 0 0.625rem 0.625rem -0.5rem rgba(0, 0, 0, 0.08);
+      }
+
+      a>.card {
+        text-decoration: none;
+      }
+
+      a>.card:hover {
+        box-shadow: 6px 18px 14px -8px rgba(0, 0, 0, 0.12);
+        box-shadow: 8px 1px 18px -1px rgba(0, 0, 0, 0.04),
+        11px 6px 16px 0px rgba(0, 0, 0, 0.06),
+        0 8px 6px -5px rgba(0, 0, 0, 0.12);
+      }
+
+
+      .center {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .center-text, .center-text-desktop {
+        text-align: center;
+      }
+
+      @media (max-width: 599px) {
+        .center-text-desktop {
+          text-align: left;
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+      }
+
+      paper-button {
+        color: var(--tint-primary);
+      }
+
+      .fade {
+        animation: fadein 2s;
+        -moz-animation: fadein 2s;
+        /* Firefox */
+        -webkit-animation: fadein 2s;
+        /* Safari and Chrome */
+        -o-animation: fadein 2s;
+        /* Opera */
+      }
+
+      @keyframes fadein {
+        from {
+          opacity: 0;
+          -webkit-transform: translateY(1.625rem);
+        }
+        to {
+          opacity: 1;
+          -webkit-transform: translateY(0);
+        }
+      }
+
+      @-moz-keyframes fadein {
+        /* Firefox */
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @-webkit-keyframes fadein {
+        /* Safari and Chrome */
+        from {
+          opacity: 0;
+          -webkit-transform: translateY(2.5rem);
+        }
+        to {
+          opacity: 1;
+          -webkit-transform: translateY(0);
+        }
+      }
+
+      @-o-keyframes fadein {
+        /* Opera */
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .gradient1 {
+        background: linear-gradient(141deg, #eaeaea 0%, #eaeaea 51%, #b6b6b6 75%);
+      }
+
+      .button a {
+        text-decoration: none;
+      }
+
+      .emoji {
+        font-size: var(--txt-l);
+      }
+    </style>
+
+    <style is="custom-style">
+      iron-image {
+        --iron-image-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      paper-chip {
+        --paper-chip-background-color: var(--tint-light-grey);
+        line-height: 2.5rem;
+        display: block;
+        margin-bottom: 1em;
+      }
+
+      .paper-chip-alt {
+        --paper-chip-background-color: var(--tint-very-light-grey);
+      }
+
+      .chip-image {
+        float: left;
+        margin: 0 0.5rem 0 -0.75rem;
+        height: 2rem;
+        width: 2rem;
+        border-radius: 50%;
+      }
+
+      paper-tabs {
+        --paper-tabs-selection-bar-color: var(--tint-black);
+        text-transform: uppercase;
+        color: var(--tint-very-dark-grey);
+      }
+
+      .toast{
+        position: relative;
+        display: block;
+        height: 100%;
+        padding: 16px;
+        border-radius: 8px;
+        margin: 16px 0;
+      }
+
+      .toast.system {
+        background-color: rgba(255, 206, 0, 0.1);
+        border: 1px solid #ffce00;
+        color: #8e7302;
+      }
+
+
+      .fade-in {
+        animation: fade-in 300ms ease-in-out;
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0
+        }
+      }
+
+    </style>
+
+  </template>
+</dom-module>

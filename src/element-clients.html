@@ -1,0 +1,166 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<link rel="import" href="../bower_components/lazy-image/lazy-image.html">
+
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="element-clients">
+  <template>
+
+    <style include="shared-styles"></style>
+    <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+
+    <custom-style>
+      <style is="custom-style">
+        section {
+          background-color: var(--tint-very-light-grey);
+        }
+
+        .grid {
+          display: grid;
+          grid-gap: 1rem;
+          grid-auto-rows: minmax(5rem, auto);
+          margin-top: 1.5rem;
+        }
+
+        @media (max-width: 599px) {
+          .grid {
+            grid-template-columns: repeat(1, 1fr);
+          }
+        }
+
+        @media (min-width: 600px) {
+          .grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (min-width: 900px) {
+          .grid {
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
+
+        .brand lazy-image,
+        .brand svg,
+        .size {
+          opacity: 0.6;
+          height: 1.5rem;
+          width: auto;
+          padding: 8px;
+        }
+
+        .brand {
+          @apply --layout-horizontal;
+          @apply --layout-center;
+          min-height: 5rem;
+          min-width: 100%;
+          justify-self: center;
+          align-items: center;
+        }
+
+        h2 {
+          margin: 0;
+          padding: 0;
+        }
+
+      </style>
+    </custom-style>
+
+    <section>
+
+      <div class="large center center-text">
+        <h2>I’ve worked on projects for</h2>
+      </div>
+
+      <div class="large center">
+        <div class="grid">
+          <template is="dom-repeat" items="[[brands]]">
+            <a href="[[item.url]]" target="_blank">
+              <div class="card brand">
+                <div class="center">
+                  <lazy-image src="[[item.img]]" alt="[[item.alt]]"></lazy-image>
+                </div>
+              </div>
+            </a>
+          </template>
+        </div>
+
+      </div>
+
+    </section>
+
+  </template>
+
+  <script>
+    class ElementBrands extends Polymer.Element {
+      static get is() {
+        return 'element-clients';
+      }
+
+      static get properties() {
+        return {
+          brands: {
+            type: Array,
+            value: () => {
+              return [{
+                "url": "https://www.vg.no/",
+                "img": "images/brands/vg.svg",
+                "alt": "VG"
+              }, {
+                "url": "https://www.finn.no/",
+                "img": "images/brands/finn.svg",
+                "alt": "Finn"
+              }, {
+                "url": "https://www.aftenposten.no/",
+                "img": "images/brands/aftenposten.svg",
+                "alt": "Aftenposten"
+              }, {
+                "url": "https://www.aftonbladet.se/",
+                "img": "images/brands/aftonbladet.svg",
+                "alt": "Aftonbladet"
+              }, {
+                "url": "https://www.svd.se/",
+                "img": "images/brands/svd.svg",
+                "alt": "Svenska Dagbladet"
+              }, {
+                "url": "https://www.blocket.se/",
+                "img": "images/brands/blocket.png",
+                "alt": "Blocket"
+              }, {
+                "url": "https://www.leboncoin.fr",
+                "img": "images/brands/leboncoin.svg",
+                "alt": "Leboncoin"
+              }, {
+                "url": "https://www.bytbil.se/",
+                "img": "images/brands/bytbil.png",
+                "alt": "Bytbil.se"
+              }, {
+                "url": "https://www.willhaben.at/",
+                "img": "images/brands/willhaben.svg",
+                "alt": "Willhaben.at"
+              }, {
+                "url": "https://www.coches.net/",
+                "img": "images/brands/coches.svg",
+                "alt": "Coches.net"
+              }, {
+                "url": "https://www.norsk-tipping.no/",
+                "img": "images/brands/nt2.svg",
+                "alt": "Norsk Tipping"
+              }, {
+                "url": "https://www.hivolca.no/",
+                "img": "images/brands/vuc.png",
+                "alt": "Volda University College"
+              }]
+            }
+          }
+        }
+      }
+    }
+    window.customElements.define(ElementBrands.is, ElementBrands);
+  </script>
+
+</dom-module>

@@ -1,0 +1,50 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../bower_components/instagram-feed/instagram-feed.html">
+<link rel="import" href="shared-styles.html">
+
+
+<dom-module id="element-instamoments">
+
+  <template>
+
+    <style include="iron-flex iron-flex-alignment"></style>
+    <style include="shared-styles"></style>
+
+    <style>
+      @media (min-width: 1200px) {
+        instagram-feed {
+          width: 80%;
+          margin: 0 auto;
+        }
+      }
+
+      h2{
+        margin-bottom: 1.5rem;
+      }
+
+      section {
+        background-color: var(--tint-very-light-grey);
+      }
+    </style>
+
+    <section class="tint-very-light-grey">
+
+      <instagram-feed access-token="3928748.1722d26.5ba1f788eb9c49e697993cc2785387ed" url="https://www.instagram.com/eirik.torheim/">
+        <span>Photos</span>
+        <h2>Instagram Moments</h2>
+      </instagram-feed>
+
+    </section>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'element-instamoments',
+
+    });
+  </script>
+
+</dom-module>

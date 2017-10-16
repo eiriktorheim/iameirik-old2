@@ -1,0 +1,122 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="element-skills2">
+  <template>
+
+    <style include="shared-styles"></style>
+    <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+
+
+    <custom-style>
+      <style is="custom-style">
+        section {
+          background-color: var(--tint-very-light-grey);
+        }
+
+        .skills {}
+
+
+        .skill {
+          text-align: center;
+          width: calc(33.33% - 2rem);
+          padding: 1rem;
+        }
+
+        .chips {
+          @apply --layout-self-start;
+          padding-top: 0rem;
+        }
+
+        h3 {
+          margin: 0;
+        }
+      </style>
+      }
+    </custom-style>
+
+
+    <section style="min-height: 10rem;" class="tint-white">
+      <div style="margin: 0 auto;" class="large center center-text">
+        <h2>My skills</h2>
+      </div>
+
+      <div class="large skills center">
+        <div class="horizontal layout">
+
+
+          <template is="dom-repeat" items="[[skills]]">
+            <div class="skill">
+              <h3>[[item.skillCategory]]</h3>
+              <template is="dom-repeat" items="[[item.skills]]" as="skill">
+                <p>[[skill.skill]]</p>
+              </template>
+            </div>
+          </template>
+        </div>
+
+      </div>
+
+
+    </section>
+
+  </template>
+
+  <script>
+    class ElementSkills2 extends Polymer.Element {
+      static get is() {
+        return 'element-skills2';
+      }
+
+      static get properties() {
+        return {
+          skills: {
+            type: Array,
+            value: () => {
+              return [{
+                "skillCategory": "Product Design",
+                "skills": [{
+                  "skill": "Design Thinking"
+                }, {
+                  "skill": "Interaction Design"
+                }, {
+                  "skill": "Visual Design"
+                }, {
+                  "skill": "Prototyping"
+                }, {
+                  "skill": "Design Sprint"
+                }]
+              }, {
+                "skillCategory": "Product Management",
+                "skills": [{
+                  "skill": "Mission & Vision"
+                }, {
+                  "skill": "Roadmap and Prioritizing"
+                }, {
+                  "skill": "Business Strategy"
+                }]
+              }, {
+                "skillCategory": "Front-End",
+                "skills": [{
+                  "skill": "HTML"
+                }, {
+                  "skill": "CSS"
+                }, {
+                  "skill": "Basic JavaScript"
+                }, {
+                  "skill": "Polymer"
+                }]
+              }]
+            }
+          }
+        }
+      }
+    }
+
+    window.customElements.define(ElementSkills2.is, ElementSkills2);
+  </script>
+
+</dom-module>

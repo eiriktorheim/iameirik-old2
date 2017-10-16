@@ -1,0 +1,41 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="element-footer">
+
+  <template>
+
+    <style include="shared-styles"></style>
+
+    <style>
+      section {
+        padding: .5rem;
+        background-color: var(--tint-black);
+        color: var(--tint-light-grey);
+      }
+
+      h3 {
+        font-size: 0.875rem;
+        font-weight: 100;
+        margin-bottom: 0;
+      }
+    </style>
+
+    <!-- shadow DOM goes here -->
+    <section>
+      <div class="larger center center-text">
+        <h3>Handcrafted with ❤️ and ☕ from Barcelona. Code and design by Eirik Torheim Gilje. Fork on <a href="https://github.com/eiriktorheim/iameirik">Github</a>.
+        </h3>
+      </div>
+    </section>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: "element-footer"
+
+    });
+  </script>
+
+</dom-module>

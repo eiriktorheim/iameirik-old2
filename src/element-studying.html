@@ -1,0 +1,100 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/paper-chip/paper-chip.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="element-studying">
+  <template>
+
+  <style include="shared-styles"></style>
+  <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+
+  <custom-style>
+    <style is="custom-style">
+      section{
+        background-color: var(--tint-white);
+      }
+
+      .grid {
+        display: grid;
+        grid-gap: 1rem;
+        grid-auto-rows: minmax(5rem, auto);
+        margin-top: 1.5rem;
+      }
+
+      @media (max-width: 599px) {
+        .grid {
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+
+      @media (min-width: 600px) {
+        .grid {
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+
+      @media (min-width: 900px) {
+        .grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      paper-chip{
+        display: inline;
+      } 
+
+      h3{
+        margin: 0;
+        padding: 0;
+      }
+
+
+
+    </style>
+  </custom-style>
+
+    <section style="min-height: 10rem;" class="tint-white"> 
+      <div style="margin: 0 auto;" class="medium center center-text">
+        <div>
+          <span class="emoji">💡<span>
+        </div>
+        <h2>Currently studying</h2>
+      </div>
+
+      <div class="large center">
+
+        <div class="grid">
+          <div>
+            <h3 class="card-content">Blockchain</h3>
+            <p>Blockchain is so much more than cryptocurrency. It can validate and secure almost anything, without the 3rd part. There is so much potential in the blockchain technology.</p>
+          </div>
+          <div>
+            <h3 class="card-content">Drone Photography</h3>
+            <p>Nature, landscapes, photography, and flying a toy - my perfect combo! Can't wait to get the hands on my new DJI Mavic Platinium</p>
+          </div>
+          <div>
+            <h3 class="card-content">Remote work</h3>
+            <p>Remote work is booming, whether you’re working from home, your favorite coffee shop, a coworking space, or somewhere else entirely</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </template>
+
+  <script>
+
+    Polymer({
+    is: "element-studying",
+
+  });
+  
+  </script>
+
+</dom-module>

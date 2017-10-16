@@ -1,0 +1,192 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="element-footer.html">
+<link rel="import" href="element-contact.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="element-case-page">
+  <template>
+    <style include="shared-styles">
+      app-header-layout {
+        @apply --layout-vertical;
+        @apply --layout-center-center;
+        height: calc(100vh - 64px);
+        padding: 0 1rem;
+        color: white;
+        background-image: url('/images/cases/case2/nt.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+
+      header {
+        text-align: center;
+      }
+
+      app-toolbar {
+        @apply(--layout-horizontal);
+        @apply(--layout-justified);
+      }
+
+      app-toolbar a {
+        text-decoration: none;
+        color: var(--tint-white);
+      }
+
+      [invisible] {
+        visibility: hidden;
+      }
+
+      section {
+        background-color: var(--tint-white);
+        min-height: 10rem;
+        max-width: var(--width-medium);
+        margin: 0 auto;
+        padding-top: 1.5rem;
+      }
+
+      section.everynthchild {
+        background-color: var(--tint-very-light-grey);
+      }
+
+      .fakeimg {
+        height: 25rem;
+        width: 100%;
+        background-color: var(--tint-medium-grey);
+      }
+
+ 
+      h1 {
+        margin-bottom: 1rem 0 0 0;
+      }
+
+      h2 {
+        margin-top: 2rem 0 0 0;
+      }
+
+      h3 {
+        margin: 2rem 0 0 0;
+      }
+
+      h4 {
+        font-size: 1.5rem 0 0 0;
+      }
+
+
+    </style>
+
+
+    <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+
+    <app-header-layout>
+
+      <app-header effects="waterfall" slot="header">
+        <app-toolbar>
+          <a href="/">
+            <paper-icon-button icon="arrow-back"></paper-icon-button>
+            <span>Back to front</span>
+          </a>
+          <a href="case/[[_nextUrl(project)]]" invisible$="[[_shouldHideNext(project)]]">
+            <span>Next case</span>
+            <paper-icon-button icon="arrow-forward"></paper-icon-button>
+          </a>
+        </app-toolbar>
+      </app-header>
+
+      <header>
+        <h1>[[project.title]]</h1>
+        <p>[[project.subtitle]]</p>
+      </header>
+
+    </app-header-layout>
+
+    <div class="medium center">
+      <div class="toast system">
+        This page is under heavy development. It will be changed often.
+      </div>
+    </div>
+
+    <div id="body"></div>
+
+    <section class="tint-light-grey">
+      <div class="medium center center-text">
+        <h2>[[project.title]]</h2>
+        <p>[[project.subtitle]]</p>
+
+        <paper-button on-click="_nextCase" invisible$="[[_shouldHideNext(project)]]">Next case &nbsp;
+          <iron-icon icon="arrow-forward"></iron-icon>
+        </paper-button>
+      </div>
+    </section>
+
+    <element-contact></element-contact>
+
+    <element-footer></element-footer>
+
+
+  </template>
+
+  <script>
+    class ElementCasePage extends Polymer.Element {
+      static get is() {
+        return 'element-case-page';
+      }
+
+      static get properties() {
+        return {
+          project: Object
+        }
+      }
+
+      static get observers() {
+        return [
+          '_setHeaderBackground(project.headerBackground, project)',
+          '_setBody(project.body)'
+        ];
+      }
+
+      _shouldHidePrevious() {
+        if (!this.project.previous)
+          return true;
+      }
+
+      _previousUrl() {
+        return this.project.previous;
+      }
+
+      _shouldHideNext() {
+        if (!this.project.next)
+          return true;
+      }
+
+      _nextUrl() {
+        return this.project.next;
+      }
+
+      _setHeaderBackground(headerBackground) {
+        const headerEl = Polymer.dom(this.root).querySelector('app-header-layout');
+        headerEl.style.background = headerBackground;
+        headerEl.style.background += ' center';
+      }
+
+      _setBody(body) {
+        this.$.body.innerHTML = body;
+      }
+
+      _nextCase(e) {
+        // Wait for ripple to finish.
+        e.target.addEventListener('transitionend', e => {
+          location.href = 'case/' + this.project.next;
+        });
+      }
+    }
+
+    window.customElements.define(ElementCasePage.is, ElementCasePage);
+  </script>
+</dom-module>
