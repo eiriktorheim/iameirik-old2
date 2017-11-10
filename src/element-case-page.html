@@ -16,17 +16,24 @@
       app-header-layout {
         @apply --layout-vertical;
         @apply --layout-center-center;
-        height: calc(100vh - 64px);
         padding: 0 1rem;
-        color: white;
-        background-image: url('/images/cases/case2/nt.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
       }
 
-      header {
+      .space {
+        padding-top: 5rem;
+        padding-bottom: 2rem;
+      }
+
+      .half-space {
+        padding: 2.5rem 0;
+      }
+
+      .default{
+        width: var(--width-ml);
+        margin-left: auto;
+        margin-right: auto;
         text-align: center;
+        padding-bottom: 5rem;
       }
 
       app-toolbar {
@@ -36,11 +43,17 @@
 
       app-toolbar a {
         text-decoration: none;
-        color: var(--tint-white);
+        color: var(--tint-black);
       }
 
       [invisible] {
         visibility: hidden;
+      }
+
+      .half-container{
+        width: 50%;
+        display: inline-block;
+        margin-right: -4px;
       }
 
       section {
@@ -62,22 +75,94 @@
       }
 
  
+
       h1 {
-        margin-bottom: 1rem 0 0 0;
+        margin-bottom: 1rem;
       }
 
       h2 {
-        margin-top: 2rem 0 0 0;
+        margin-top: 2rem;
       }
 
       h3 {
-        margin: 2rem 0 0 0;
+        margin-top: 2rem;
       }
 
       h4 {
-        font-size: 1.5rem 0 0 0;
+        font-size: 1.5rem;
       }
 
+      span{
+        font-size: var(--txt-s);
+        color: var(--tint-black);
+      }
+
+
+      .timeline-step{
+        position: relative;
+        width: 2px;
+        background-color: #f0f0f0;
+        margin: 0 auto;
+      }
+
+      .step-container {
+      position: relative;
+        left: 100px;
+        bottom: 0;
+        width: 300px;
+      }
+
+      img,video{
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .step-container-right {
+        text-align: left;
+      }
+
+      .step-container-left {
+        left: -400px;
+        text-align: right;
+      }
+
+      .step-container-left:before {
+          left: 324px;
+          content: "";
+          position: absolute;
+          top: 146px;
+          width: 60px;
+          height: 2px;
+          background: #f0f0f0;
+      }
+
+      .step-container-right:before {
+          left: -80px;
+          content: "";
+          position: absolute;
+          top: 146px;
+          width: 60px;
+          height: 2px;
+          background: #f0f0f0;
+      }
+
+      .timeline-step:after {
+          content: "";
+          position: absolute;
+          transition: all .2s ease;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          top: 133px;
+          border: 10px solid #fff;
+          background: var(--tint-primary);
+      }
+
+      li{
+        list-style: none;
+      }
 
     </style>
 
@@ -90,30 +175,58 @@
         <app-toolbar>
           <a href="/">
             <paper-icon-button icon="arrow-back"></paper-icon-button>
-            <span>Back to front</span>
+            <span class="sans-serif">Back to front</span>
           </a>
           <a href="case/[[_nextUrl(project)]]" invisible$="[[_shouldHideNext(project)]]">
-            <span>Next case</span>
+            <span class="sans-serif">Next case</span>
             <paper-icon-button icon="arrow-forward"></paper-icon-button>
           </a>
         </app-toolbar>
       </app-header>
 
-      <header>
-        <h1>[[project.title]]</h1>
-        <p>[[project.subtitle]]</p>
-      </header>
+
+
 
     </app-header-layout>
 
-    <div class="medium center">
-      <div class="toast system">
-        This page is under heavy development. It will be changed often.
-      </div>
+    <div class="mediumlarge center-text center space">
+      <h2>[[project.title]]</h2>
+      <p id="subtitle" style="margin: 2rem 0;"></p>
+      <p>[[project.roleAndTime]]</p>
+    </div>
+
+    <div id="visual" class="project-image full center"></div>
+
+    <div class="full">
+      <h3 class="center center-text">Problem</h3>
+      <div id="problem"></div>
+    </div>
+
+    <div class="default">
+      <h3>Team & Role</h3>
+       <p>[[project.teamandrole]]</p>
+    </div>
+
+    <div id="process" class="full"></div>
+
+    <div class="full">
+      <h3 class="center center-text" style="margin-top: 2rem;">Our approach</h3>
+      <div id="approach" class="project-image full center"></div>
+    </div>
+
+    <div class="full">
+      <h3 class="center center-text">Final</h3>
+      <div id="final" class="project-image full center"></div>
+    </div>
+
+    <div class="default">
+      <h3>Impact</h3>
+      <p>[[project.result]]</p>
     </div>
 
     <div id="body"></div>
 
+<!--
     <section class="tint-light-grey">
       <div class="medium center center-text">
         <h2>[[project.title]]</h2>
@@ -126,7 +239,7 @@
     </section>
 
     <element-contact></element-contact>
-
+-->
     <element-footer></element-footer>
 
 
@@ -146,8 +259,12 @@
 
       static get observers() {
         return [
-          '_setHeaderBackground(project.headerBackground, project)',
-          '_setBody(project.body)'
+          '_setSubtitle(project.subtitle)',
+          '_setVisual(project.mainVisual)',
+          '_setProblem(project.problem)',
+          '_setApproach(project.approach)',
+          '_setProcess(project.process)',
+          '_setFinal(project.final)'
         ];
       }
 
@@ -169,15 +286,30 @@
         return this.project.next;
       }
 
-      _setHeaderBackground(headerBackground) {
-        const headerEl = Polymer.dom(this.root).querySelector('app-header-layout');
-        headerEl.style.background = headerBackground;
-        headerEl.style.background += ' center';
+      _setSubtitle(subtitle) {
+        this.$.subtitle.innerHTML = subtitle;
       }
 
-      _setBody(body) {
-        this.$.body.innerHTML = body;
+      _setVisual(visual) {
+        this.$.visual.innerHTML = visual;
       }
+
+      _setProblem(problem) {
+        this.$.problem.innerHTML = problem;
+      }
+
+      _setProcess(process) {
+        this.$.process.innerHTML = process;
+      }
+
+      _setApproach(approach) {
+        this.$.approach.innerHTML = approach;
+      }
+
+      _setFinal(final) {
+        this.$.final.innerHTML = final;
+      }
+
 
       _nextCase(e) {
         // Wait for ripple to finish.

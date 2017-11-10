@@ -16,14 +16,16 @@
     <style>
       section {
         background-color: var(--tint-very-light-grey);
-        padding: 6rem 0;
+        padding: 4rem 0;
       }
 
       .grid {
         display: grid;
-        grid-gap: 1rem;
+        grid-gap: 0;
         grid-auto-rows: minmax(5rem, auto);
-        margin-top: 1.5rem;
+        margin-top: 3rem;
+        box-shadow: 0px 0px 54px rgba(0, 0, 0, .1);
+}
       }
 
       @media (max-width: 599px) {
@@ -40,10 +42,27 @@
 
       @media (min-width: 900px) {
         .grid {
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: repeat(3, 1fr);
         }
       }
 
+      .project-title{
+        padding: 18px 0 52px 0;
+      }
+
+      .project-image {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: .8s;
+        background-size: 102%;
+      }
+
+      .project-image:hover {
+        background-size: 115%;
+      }
 
       .header {
         font-weight: bold;
@@ -77,6 +96,7 @@
 
 
 
+/*
       .effect img,
       .effect lazy-image,
       .effect h3,
@@ -182,6 +202,8 @@
       .effect:hover lazy-image {
           opacity: 0.5
       }
+
+      */
       figcaption {
           position: relative;
           top: 0;
@@ -204,17 +226,25 @@
           <span>Selected work</span>
         </div>
 
+      </div>
+
+      <div class="full center">
+
         <div class="grid">
 
           <template is="dom-repeat" items="{{workItems}}" filter="{{_filterWorkItems(_selected)}}" observe="_selected">
-            <div style="background-color: [[item.color]];" class="effect anim fadein active">
-              <lazy-image fade src="[[item.imagePath]]" alt="[[item.alt]]"></lazy-image>
-              <figcaption>
-                <h3>[[item.title]]</h3>
-                <h4>[[item.category]]</h4>
-                <a href="[[item.url]]" target="_blank">View more</a>
-              </figcaption>
-            </div>
+            <a href="[[item.url]]">
+              <div class="project effect anim fadein active">
+                <div class="project-image" style="background-image: url([[item.imagePath]]);
+}">
+                  <img src="http://annie-tang.com/Images/index/project.svg" alt="[[item.title]]"/>
+                </div>
+                <div class="project-title">
+                  <h5 class="center-text">[[item.title]] | [[item.time]]</h5>
+                  <h6 class="center-text">[[item.client]]</h6>
+                </div>
+              </div>
+            </a>
           </template>
     
         </div>
@@ -237,69 +267,58 @@
             value: () => {
               return [{
                 "type": 0,
-                "url": "//www.fjordyoga.com",
-                "imagePath": "./images/work/fjordyoga.jpg",
-                "alt": "Fjordyoga",
-                "title": "Fjordyoga",
-                "content": "fjordyoga.com",
-                "color": "#1c1b20", 
-                "category": "Web, photo, marketing"
+                "url": "case/schibsted-developer-console",
+                "imagePath": "./images/cases/fr-devcon.jpg",
+                "title": "Schibsted Developer Console",
+                "role": "Design Lead",
+                "client": "Schibsted Media Group",
+                "time": "2017",
+                "timeDetailed": "Mar 2017 - Okt 2017 · 8 mos"
+              }, {
+                "type": 0,
+                "url": "case/marketplace-car-vertical",
+                "imagePath": "./images/cases/fr-cars.jpg",
+                "title": "Marketplaces Car Vertical",
+                "role": "Design Lead",
+                "client": "Schibsted Media Group",
+                "time": "2016",
+                "timeDetailed": "May 2016 - Mar 2017 · 11 mos"
+              }, {
+                "type": 0,
+                "url": "case/schibsted-media-platform",
+                "imagePath": "./images/cases/fr-smp.jpg",
+                "title": "Schibsted Media Platform",
+                "client": "Schibsted Media Group",
+                "role": "UX Designer",
+                "time": "2015",
+                "timeDetailed": "Sep 2015 - May 2016 · 9 mos"
+              }, {
+                "type": 0,
+                "url": "case/modernizing-norsk-tipping",
+                "imagePath": "./images/cases/fr-nt2.jpg",
+                "title": "PM for Norsk-tipping.no",
+                "role": "Design Lead",
+                "client": "Norsk Tipping",
+                "time": "2014",
+                "timeDetailed": "Sep 2014 - Sep 2015 · 1 yr 1 mo"
+              }, {
+                "type": 0,
+                "url": "case/design-system-norsktipping",
+                "imagePath": "./images/cases/fr-nt.jpg",
+                "title": "Design system for Norsk-tipping.no",
+                "role": "Designer",
+                "client": "Norsk Tipping",
+                "time": "2013",
+                "timeDetailed": "Sep 2013 - Sep 2014 · 1 yr 1 mo"
 
               }, {
                 "type": 0,
-                "url": "//www.norsk-tipping.no/",
-                "imagePath": "../images/mywork/nt.jpg",
-                "alt": "Norsk Tipping",
-                "title": "Norsk-tipping.no",
-                "content": "norsk-tipping.no",
-                "color": "#1c1b20", 
-                "category": "Web"
-              }, {
-                "type": 0,
-                "url": "//www.behance.net/gallery/4633017/Sunnmoere-Chamber-Music-Festival",
-                "imagePath": "./images/mywork/work1.jpg",
-                "alt": "Kammermusikkfestival",
-                "title": "Kammermusikkfestival",
-                "content": "kammermusikkfestival.no",
-                "color": "#1c1b20", 
-                "category": "Brand, Print, Web"
-              }, {
-                "type": 0,
-                "url": "#",
-                "imagePath": "./images/mywork/work11.jpg",
-                "alt": "Real World",
-                "title": "Real World",
-                "content": "Book",
-                "color": "#c6c7c2", 
-                "category": "Book Design"
-              }, {
-                "type": 1,
-                "url": "#",
-                "imagePath": "../images/work/graphic.jpg",
-                "alt": "Graphic",
-                "title": "Exhibition website",
-                "content": "http://smudesign.co.uk/",
-                "color": "#1c1b20", 
-                "category": "Print & Web"
-              }, {
-                "type": 0,
-                "url": "#",
-                "imagePath": "./images/mywork/work5.jpg",
-                "alt": "012b10",
-                "title": "Nike",
-                "content": " ",
-                "color": "#012b10", 
-                "category": "Kit Concept"
-
-              }, {
-                "type": 0,
-                "url": "#",
-                "imagePath": "./images/mywork/work2.jpg",
-                "alt": "012b10",
-                "title": "Photography Exhibition",
-                "content": " ",
-                "color": "#c6c7c2", 
-                "category": "Book Design"
+                "url": "case/side-projects",
+                "imagePath": "./images/cases/fr-sideprojects.jpg",
+                "title": "Side projects",
+                "role": "Designer",
+                "time": "",
+                "timeDetailed": ""
               }]
             }
           },
