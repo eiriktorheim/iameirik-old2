@@ -97,6 +97,9 @@
         color: var(--tint-black);
       }
 
+      .roleandtime{
+        font-style: italic;
+      }
 
       .timeline-step{
         position: relative;
@@ -173,7 +176,7 @@
 
       <app-header effects="waterfall" slot="header">
         <app-toolbar>
-          <a href="/">
+          <a href="/#schibsted-media-platform">
             <paper-icon-button icon="arrow-back"></paper-icon-button>
             <span class="sans-serif">Back to front</span>
           </a>
@@ -192,7 +195,7 @@
     <div class="mediumlarge center-text center space">
       <h2>[[project.title]]</h2>
       <p id="subtitle" style="margin: 2rem 0;"></p>
-      <p>[[project.roleAndTime]]</p>
+      <p class="roleandtime">[[project.roleandtime]]</p>
     </div>
 
     <div id="visual" class="project-image full center"></div>

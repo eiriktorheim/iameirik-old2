@@ -233,10 +233,9 @@
         <div class="grid">
 
           <template is="dom-repeat" items="{{workItems}}" filter="{{_filterWorkItems(_selected)}}" observe="_selected">
-            <a href="[[item.url]]">
+            <a id="[[item.route]]" href="case/[[item.route]]">
               <div class="project effect anim fadein active">
-                <div class="project-image" style="background-image: url([[item.imagePath]]);
-}">
+                <div class="project-image" style="background-image: url([[item.imagePath]]);}">
                   <img src="http://annie-tang.com/Images/index/project.svg" alt="[[item.title]]"/>
                 </div>
                 <div class="project-title">
@@ -267,7 +266,7 @@
             value: () => {
               return [{
                 "type": 0,
-                "url": "case/schibsted-developer-console",
+                "route": "schibsted-developer-console",
                 "imagePath": "./images/cases/fr-devcon.jpg",
                 "title": "Schibsted Developer Console",
                 "role": "Design Lead",
@@ -276,7 +275,7 @@
                 "timeDetailed": "Mar 2017 - Okt 2017 · 8 mos"
               }, {
                 "type": 0,
-                "url": "case/marketplace-car-vertical",
+                "route": "marketplace-car-vertical",
                 "imagePath": "./images/cases/fr-cars.jpg",
                 "title": "Marketplaces Car Vertical",
                 "role": "Design Lead",
@@ -285,7 +284,7 @@
                 "timeDetailed": "May 2016 - Mar 2017 · 11 mos"
               }, {
                 "type": 0,
-                "url": "case/schibsted-media-platform",
+                "route": "schibsted-media-platform",
                 "imagePath": "./images/cases/fr-smp.jpg",
                 "title": "Schibsted Media Platform",
                 "client": "Schibsted Media Group",
@@ -294,7 +293,7 @@
                 "timeDetailed": "Sep 2015 - May 2016 · 9 mos"
               }, {
                 "type": 0,
-                "url": "case/modernizing-norsk-tipping",
+                "route": "modernizing-norsk-tipping",
                 "imagePath": "./images/cases/fr-nt2.jpg",
                 "title": "PM for Norsk-tipping.no",
                 "role": "Design Lead",
@@ -303,7 +302,7 @@
                 "timeDetailed": "Sep 2014 - Sep 2015 · 1 yr 1 mo"
               }, {
                 "type": 0,
-                "url": "case/design-system-norsktipping",
+                "route": "design-system-norsktipping",
                 "imagePath": "./images/cases/fr-nt.jpg",
                 "title": "Design system for Norsk-tipping.no",
                 "role": "Designer",
@@ -313,7 +312,7 @@
 
               }, {
                 "type": 0,
-                "url": "case/side-projects",
+                "route": "side-projects",
                 "imagePath": "./images/cases/fr-sideprojects.jpg",
                 "title": "Side projects",
                 "role": "Designer",
