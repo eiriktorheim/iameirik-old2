@@ -6,7 +6,9 @@
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="element-footer.html">
+<link rel="import" href="element-mywork.html">
 <link rel="import" href="element-contact.html">
 <link rel="import" href="shared-styles.html">
 
@@ -90,6 +92,7 @@
 
       h4 {
         font-size: 1.5rem;
+        margin-bottom: 1rem;
       }
 
       span{
@@ -106,6 +109,7 @@
         width: 2px;
         background-color: #f0f0f0;
         margin: 0 auto;
+        margin-bottom: -2rem;
       }
 
       .step-container {
@@ -163,8 +167,62 @@
           background: var(--tint-primary);
       }
 
+      ul{
+        margin-bottom: 6rem;
+      }
+
       li{
         list-style: none;
+      }
+
+      .grid {
+        display: grid;
+        grid-gap: 1rem;
+        grid-auto-rows: minmax(5rem, auto);
+        margin-top: 1.5rem;
+      }
+
+      @media (max-width: 599px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 600px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 900px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .cta-case{
+        height: 14rem;
+        background-color: var(--tint-white);
+      }
+
+      .cta{
+        background-color: var(--tint-light-grey);
+      }
+
+      .bottom-nav{
+        background-color: var(--tint-very-dark-grey);
+        color: white;
+        padding: 1rem 0;
+      }
+
+      .nav-items{
+        @apply --layout-horizontal;
+        @apply --layout-justified;
+      }
+
+      .nav-item, .nav-item a, .nav-item span{
+        color: white;
+        text-decoration: none;
       }
 
     </style>
@@ -212,10 +270,7 @@
 
     <div id="process" class="full"></div>
 
-    <div class="full">
-      <h3 class="center center-text" style="margin-top: 2rem;">Our approach</h3>
-      <div id="approach" class="project-image full center"></div>
-    </div>
+    <div id="approach" class="full"></div>
 
     <div class="full">
       <h3 class="center center-text">Final</h3>
@@ -228,21 +283,52 @@
     </div>
 
     <div id="body"></div>
-
 <!--
-    <section class="tint-light-grey">
-      <div class="medium center center-text">
-        <h2>[[project.title]]</h2>
-        <p>[[project.subtitle]]</p>
-
-        <paper-button on-click="_nextCase" invisible$="[[_shouldHideNext(project)]]">Next case &nbsp;
-          <iron-icon icon="arrow-forward"></iron-icon>
-        </paper-button>
+    <div class="full cta">
+      <div class="mediumlarge center grid" style="padding: 6rem 0;">
+        <div class="cta-case card center-text">
+        </div>
+        <div class="cta-case card center-text">
+          <paper-button on-click="_nextCase" invisible$="[[_shouldHideNext(project)]]">Next case &nbsp;
+            <iron-icon icon="arrow-forward"></iron-icon>
+          </paper-button>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <element-contact></element-contact>
+  -->
+        <div class="full cta">
+            <element-mywork></element-mywork>
+        </div>
+<!--
+          <paper-button on-click="_nextCase" invisible$="[[_shouldHideNext(project)]]">Next case &nbsp;
+            <iron-icon icon="arrow-forward"></iron-icon>
+          </paper-button>
 -->
+<!--
+          <paper-button>
+            <iron-icon icon="arrow-back"></iron-icon>
+            &nbsp; Back 
+          </paper-button>-->
+
+        <div class="bottom-nav full">
+          <div class="nav-items">
+            <div class="nav-item">
+              <a href="/#schibsted-media-platform">
+                <paper-icon-button icon="arrow-back"></paper-icon-button>
+                <span class="sans-serif">Back to front</span>
+              </a>
+            </div>
+            <div class="nav-item">
+              <a href="case/[[_nextUrl(project)]]" invisible$="[[_shouldHideNext(project)]]">
+                <span class="sans-serif">Next case</span>
+                <paper-icon-button icon="arrow-forward"></paper-icon-button>
+              </a>
+            </div>
+          </div>
+        </div>
+
+
     <element-footer></element-footer>
 
 
