@@ -22,8 +22,8 @@
       }
 
       .space {
-        padding-top: 5rem;
-        padding-bottom: 2rem;
+        padding-top: 4rem;
+        padding-bottom: 1.5rem;
       }
 
       .half-space {
@@ -84,6 +84,7 @@
 
       h2 {
         margin-top: 2rem;
+        color:white;
       }
 
       h3 {
@@ -225,35 +226,41 @@
         text-decoration: none;
       }
 
+      .hero-image {
+        min-height: 100vh;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        z-index: -100;
+      }
+
     </style>
 
 
     <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
+    
+    <div class="hero-image" style$="background-image: url('[[project.hero]]');"></div>
 
     <app-header-layout>
-
       <app-header effects="waterfall" slot="header">
         <app-toolbar>
-          <a href="/#schibsted-media-platform">
+          <a href="/#schibsted-media-platform" style="color:white;">
             <paper-icon-button icon="arrow-back"></paper-icon-button>
-            <span class="sans-serif">Back to front</span>
+            <span class="sans-serif" style="color:white;">Back to front</span>
           </a>
-          <a href="case/[[_nextUrl(project)]]" invisible$="[[_shouldHideNext(project)]]">
-            <span class="sans-serif">Next case</span>
+          <a href="case/[[_nextUrl(project)]]" style="color:white;" invisible$="[[_shouldHideNext(project)]]">
+            <span class="sans-serif" style="color:white;">Next case</span>
             <paper-icon-button icon="arrow-forward"></paper-icon-button>
           </a>
         </app-toolbar>
       </app-header>
-
-
-
-
     </app-header-layout>
 
     <div class="mediumlarge center-text center space">
       <h2>[[project.title]]</h2>
-      <p id="subtitle" style="margin: 2rem 0;"></p>
-      <p class="roleandtime">[[project.roleandtime]]</p>
+      <p id="subtitle" style="margin: 1rem 0; color:white;"></p>
     </div>
 
     <div id="visual" class="project-image full center"></div>
