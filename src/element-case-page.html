@@ -61,7 +61,7 @@
       section {
         background-color: var(--tint-white);
         min-height: 10rem;
-        max-width: var(--width-medium);
+        /*max-width: var(--width-medium);*/
         margin: 0 auto;
         padding-top: 1.5rem;
       }
@@ -180,13 +180,16 @@
         display: grid;
         grid-gap: 1rem;
         grid-auto-rows: minmax(5rem, auto);
-        margin-top: 1.5rem;
+        margin-top: 1rem;
       }
 
       @media (max-width: 599px) {
         .grid {
           grid-template-columns: repeat(2, 1fr);
         }
+
+
+
       }
 
       @media (min-width: 600px) {
@@ -236,6 +239,62 @@
         z-index: -100;
       }
 
+
+      #summery{
+        grid-column-start: 1;
+        grid-column-end: span col4-start;
+        grid-row-start: 2
+        grid-row-end: span 2
+      }
+
+      .summery{
+        font-size: 1rem;
+      }
+
+      .sideproject {
+        max-width: 55rem;
+        height: 22rem;
+        margin-bottom: 6rem;
+        display: grid;
+        grid-auto-rows: minmax(5rem, auto);
+        margin-top: 1rem;
+        background-color: var(--tint-light-grey);
+      }
+
+      .sideproject-illustration{
+        object-fit: cover;
+
+      }
+
+      .sideproject-info{
+        padding: 1rem 2rem;
+
+      }
+
+      .imgcover{
+        width: 22rem;
+        height: 22rem;
+        object-fit: cover;
+      }
+
+      @media (max-width: 599px) {
+        .sideproject {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 600px) {
+        .sideproject {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 900px) {
+        .sideproject {
+          grid-template-columns: 22rem 1fr;
+        }
+      }
+
     </style>
 
 
@@ -264,30 +323,6 @@
     </div>
 
     <div id="visual" class="project-image full center"></div>
-
-    <div class="full">
-      <h3 class="center center-text">Problem</h3>
-      <div id="problem"></div>
-    </div>
-
-    <div class="default">
-      <h3>Team & Role</h3>
-       <p>[[project.teamandrole]]</p>
-    </div>
-
-    <div id="process" class="full"></div>
-
-    <div id="approach" class="full"></div>
-
-    <div class="full">
-      <h3 class="center center-text">Final</h3>
-      <div id="final" class="project-image full center"></div>
-    </div>
-
-    <div class="default">
-      <h3>Impact</h3>
-      <p>[[project.impact]]</p>
-    </div>
 
     <div id="body"></div>
 <!--
@@ -357,10 +392,7 @@
         return [
           '_setSubtitle(project.subtitle)',
           '_setVisual(project.mainVisual)',
-          '_setProblem(project.problem)',
-          '_setApproach(project.approach)',
-          '_setProcess(project.process)',
-          '_setFinal(project.final)'
+          '_setBody(project.body)'
         ];
       }
 
@@ -390,22 +422,9 @@
         this.$.visual.innerHTML = visual;
       }
 
-      _setProblem(problem) {
-        this.$.problem.innerHTML = problem;
+      _setBody(body) {
+        this.$.body.innerHTML = body;
       }
-
-      _setProcess(process) {
-        this.$.process.innerHTML = process;
-      }
-
-      _setApproach(approach) {
-        this.$.approach.innerHTML = approach;
-      }
-
-      _setFinal(final) {
-        this.$.final.innerHTML = final;
-      }
-
 
       _nextCase(e) {
         // Wait for ripple to finish.
