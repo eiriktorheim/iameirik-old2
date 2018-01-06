@@ -10,96 +10,123 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="Polymer Starter Kit">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-  <title>I am Eirik</title>
-  <meta name="description" content="Presentation and portfolio of product designer and manager Eirik Torheim">
+    <title>I am Eirik</title>
+    <meta name="description" content="Presentation and portfolio of product designer and manager Eirik Torheim">
 
-  <base href="/">
+    <!--
+      The `<base>` tag below is present to support two advanced deployment options:
+      1) Differential serving. 2) Serving from a non-root path.
 
-  <!-- See https://goo.gl/OOhYW5 -->
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#3f51b5">
+      Instead of manually editing the `<base>` tag yourself, you should generally either:
+      a) Add a `basePath` property to the build configuration in your `polymer.json`.
+      b) Use the `--base-path` command-line option for `polymer build`.
 
-  <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="I am Eirik">
+      Note: If you intend to serve from a non-root path, see [polymer-root-path] below.
+    -->
+    <base href="/">
 
-  <!-- Add to homescreen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="I am Eirik">
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#3f51b5">
 
-  <!-- Homescreen icons -->
-  <link rel="apple-touch-icon" sizes="72x72" href="images/manifest/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="images/manifest/apple-icon-120x120.png">
-  <link rel="icon" type="image/png" href="images/manifest/favicon-16x16.png" sizes="16x16">
-  <link rel="icon" type="image/png" href="images/manifest/favicon-32x32.png" sizes="32x32">
-  <link rel="icon" type="image/png" href="images/manifest/favicon-96x96.png" sizes="96x96">
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="I am Eirik">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="I am Eirik">
+
+    <!-- Homescreen icons -->
+    <link rel="apple-touch-icon" sizes="72x72" href="images/manifest/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/manifest/apple-icon-120x120.png">
+    <link rel="icon" type="image/png" href="images/manifest/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="images/manifest/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/manifest/favicon-96x96.png" sizes="96x96">
 
     <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-K6CWN8S');</script>
-  <!-- End Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K6CWN8S');</script>
+    <!-- End Google Tag Manager -->
 
-  <style>
-    body {
-      display: block;
-      margin: 0;
-      font-family: 'PT Serif', serif;
-      /*font-family: -apple-system, BlinkMacSystemFont,
-      "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans",
-      "Droid Sans", "Helvetica Neue", sans-serif;*/
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      font-weight: 100;
-      font-size: 100%;
-      line-height: 1.5;
-      min-height: 100vh;
-      background-color: #ffffff;
-      max-width: 100vw;
-      overflow-x: hidden;
-    }
-  </style>
+    <script>
+      /**
+      * [polymer-root-path]
+      *
+      * By default, we set `Polymer.rootPath` to the server root path (`/`).
+      * Leave this line unchanged if you intend to serve your app from the root
+      * path (e.g., with URLs like `my.domain/` and `my.domain/view1`).
+      *
+      * If you intend to serve your app from a non-root path (e.g., with URLs
+      * like `my.domain/my-app/` and `my.domain/my-app/view1`), edit this line
+      * to indicate the path from which you'll be serving, including leading
+      * and trailing slashes (e.g., `/my-app/`).
+      */
+      window.Polymer = {rootPath: '/'};
 
-</head>
+      // Load and register pre-caching Service Worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('service-worker.js', {
+            scope: Polymer.rootPath,
+          });
+        });
+      }
+    </script>
 
-<body>
+    <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
+    <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
 
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K6CWN8S"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+    <!-- Load your application shell -->
+    <link rel="import" href="src/my-app.html">
 
-  <script>
-    // Register the base URL
-    const baseUrl = document.querySelector('base').href;
+    <!-- Add any global styles for body, document, etc. -->
+    <style>
+      body {
+        display: block;
+        margin: 0;
+        font-family: 'PT Serif', serif;
+        /*font-family: -apple-system, BlinkMacSystemFont,
+        "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;*/
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-weight: 100;
+        font-size: 100%;
+        line-height: 1.5;
+        min-height: 100vh;
+        background-color: #ffffff;
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+    </style>
+  </head>
+  <body>
 
-    // Load and register pre-caching Service Worker
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register(baseUrl + 'service-worker.js');
-      });
-    }
-  </script>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K6CWN8S"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-  <my-app unresolved></my-app>
+    <my-app unresolved></my-app>
+    
+    <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+    <link rel="import" href="src/my-app.html">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
 
-  <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
-
-  <link rel="import" href="src/my-app.html">
-  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
-
-  <noscript>
-    Please enable JavaScript to view this website.
-  </noscript>
-
-</body>
-
+    <noscript>
+      Please enable JavaScript to view this website.
+    </noscript>
+    <!-- Built with love using Polymer Starter Kit -->
+  </body>
 </html>

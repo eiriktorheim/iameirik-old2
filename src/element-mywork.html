@@ -92,116 +92,6 @@
           -ms-opacity: 1;
           opacity: 1
       }
-
-
-/*
-      .effect img,
-      .effect lazy-image,
-      .effect h3,
-      .effect h4 {
-          -webkit-transition: opacity 0.4s cubic-bezier(0.1, 0.7, 0.3, 1), -webkit-transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1);
-          -moz-transition: opacity 0.4s cubic-bezier(0.1, 0.7, 0.3, 1), -moz-transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1);
-          -ms-transition: opacity 0.4s cubic-bezier(0.1, 0.7, 0.3, 1), -ms-transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1);
-          -o-transition: opacity 0.4s cubic-bezier(0.1, 0.7, 0.3, 1), -o-transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1);
-          transition: opacity 0.4s cubic-bezier(0.1, 0.7, 0.3, 1), transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1)
-      }
-
-
-      .effect:after {
-          content: " ";
-          display: block;
-          clear: both
-      }
-
-      .effect {
-          position: relative;
-          z-index: 1;
-          display: inline-block;
-          overflow: hidden;
-          text-align: center;
-          cursor: pointer
-      }
-      .effect img,
-      .effect lazy-image {
-          position: relative;
-          display: block;
-          min-height: 100%;
-          opacity: 1;
-          -webkit-transform: scale(1.1);
-          -moz-transform: scale(1.1);
-          -ms-transform: scale(1.1);
-          -o-transform: scale(1.1);
-          transform: scale(1.1)
-      }
-      .effect figcaption {
-          color: #FFF;
-          text-transform: uppercase;
-          -webkit-backface-visibility: hidden;
-          -moz-backface-visibility: hidden;
-          backface-visibility: hidden
-      }
-      .effect a {
-          z-index: 100;
-          text-indent: 200%;
-          white-space: nowrap;
-          font-size: 0;
-          opacity: 0
-      }
-      .effect figcaption,
-      .effect a {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(255, 255, 255, 0)
-      }
-      .effect h3{
-          margin: 0;
-          margin-top: 108px;
-      }    
-      .effect h4{
-          margin:0;
-      }          
-      .effect h3,
-      .effect h4 {
-          font-weight: 500;       
-          opacity: 0;
-          letter-spacing: 120%;
-          -webkit-transform: scale(1.08);
-          -moz-transform: scale(1.08);
-          -ms-transform: scale(1.08);
-          -o-transform: scale(1.08);
-          transform: scale(1.08)
-      }
-      .effect h4 {
-          font-size: var(--txt-m);
-          font-weight: 200
-      }
-      .effect:hover img,
-      .effect:hover lazy-image  {
-          opacity: .3;
-          -webkit-transform: scale(1);
-          -moz-transform: scale(1);
-          -ms-transform: scale(1);
-          -o-transform: scale(1);
-          transform: scale(1)
-      }
-      .effect:hover h3,
-      .effect:hover h4 {
-          opacity: 1;
-          -webkit-transform: scale(1);
-          -moz-transform: scale(1);
-          -ms-transform: scale(1);
-          -o-transform: scale(1);
-          transform: scale(1)
-      }
-      .effect:hover img
-      .effect:hover lazy-image {
-          opacity: 0.5
-      }
-
-      */
       figcaption {
           position: relative;
           top: 0;
@@ -236,7 +126,7 @@
             <a id="[[item.route]]" href="case/[[item.route]]">
               <div class="project effect anim fadein active">
                 <div class="project-image" style="background-image: url([[item.imagePath]]);}">
-                  <img src="http://annie-tang.com/Images/index/project.svg" alt="[[item.title]]"/>
+                  <img src="./images/project.svg" alt="[[item.title]]"/>
                 </div>
                 <div class="project-title">
                   <h5 class="center-text">[[item.title]]</h5>

@@ -36,6 +36,11 @@ Custom property | Description | Default
 <dom-module id="paper-chip-input-autocomplete">
 	<template>
 		<style>
+			:host {
+				display: block;
+				position: relative;
+			}
+
 			paper-item:hover {
 				background: #eee;
 				color: #333;
@@ -43,13 +48,14 @@ Custom property | Description | Default
 			}
 
 			paper-item.active,
-			 :host ::content paper-item.active {
+			:host ::content paper-item.active {
 				background: #eee;
 				color: #333;
 			}
 
 			paper-item {
 				height: 0px; /* To resolve `min-height` bug on IE 11 */
+
 				--paper-item-selected-weight: normal;
 				--paper-item-min-height: var(--paper-chip-autocomplete-item-height, 48px);
 				--paper-item: {
@@ -89,38 +95,62 @@ Custom property | Description | Default
 					font-size: var(--paper-chip-input-autocomplete-label-font-size, 13px);
 				}
 			}
+
+			paper-chip {
+				@apply --paper-chip-close-label;
+			}
 		</style>
 
+		<iron-a11y-keys target="paperInput" keys="enter" on-keys-pressed="_onKeyEnter"></iron-a11y-keys>
 		<iron-a11y-keys target="paperInput" keys="backspace" on-keys-pressed="_onKeyBackspace"></iron-a11y-keys>
+		<iron-a11y-keys target="paperInput" keys="esc" on-keys-pressed="_onKeyEsc"></iron-a11y-keys>
+
+		<iron-a11y-keys target="paperInput" keys="down" on-keys-pressed="_onKeyUpOrDown"></iron-a11y-keys>
+		<iron-a11y-keys target="paperInput" keys="up" on-keys-pressed="_onKeyUpOrDown"></iron-a11y-keys>
 
 		<div>
-			<paper-input id="paperInput" label="[[label]]" on-keyup="_findItems" value="{{_inputValue}}" autofocus="{{autofocus}}">
-				<div id="slot2" slot="prefix">
-					<dom-repeat items="[[_items]]">
-						<template>
-							[[item.name]]
-							<paper-chip id="paper-chip-[[item]]-[[index]]" 
-										label="[[item]]" 
-										closable$="[[closable]]" 
-										on-chip-removed="_removeChip">
-							</paper-chip>
-						</template>
-					</dom-repeat>
-				</div>
+			<paper-input id="paperInput"
+						 disabled$="[[disabled]]"
+						 readonly$="[[readonly]]"
+						 label="[[label]]"
+						 on-keyup="_findItems"
+						 value="{{_inputValue}}"
+						 autofocus="{{autofocus}}"
+						 allowed-pattern="[[allowedPattern]]"
+						 pattern="[[pattern]]"
+						 required$="[[required]]"
+						 auto-validate$="[[autoValidate]]"
+						 error-message="[[errorMessage]]">
+						 <div id="slot2" slot="prefix">
+							<dom-repeat items="[[items]]">
+								<template>
+									[[item.name]]
+									<paper-chip id="paper-chip-[[item]]-[[index]]"
+												label="[[item]]"
+												closable$="[[closable]]"
+												on-chip-removed="_removeChip">
+									</paper-chip>
+								</template>
+							</dom-repeat>
+						 </div>
 			</paper-input>
 		</div>
 
-		<paper-material class$="[[_autocompleteClass]]" elevation="1">
-			<paper-listbox id="listbox">
-				<dom-repeat items="[[_filteredSource]]">
-					<template>
-						<paper-item id="paperItemAutocomplete" on-tap="_selectPaperItem" closable$="[[closable]]">[[item.text]]
-							<paper-ripple></paper-ripple>
-						</paper-item>
-					</template>
-				</dom-repeat>
-			</paper-listbox>
-		</paper-material>
+		<dom-if if="[[_isEmpty(_filteredSource)]]">
+			<template>
+				<paper-material class$="[[_autocompleteClass]]" elevation="1">
+					<paper-listbox id="listbox">
+						<dom-repeat items="[[_filteredSource]]">
+								<template>
+									<paper-item id="paperItemAutocomplete" on-tap="_selectPaperItem" closable$="[[closable]]">[[item.text]]
+										<paper-ripple></paper-ripple>
+									</paper-item>
+								</template>
+							</dom-repeat>
+					</paper-listbox>
+				</paper-material>
+			</template>
+		</dom-if>
 
 	</template>
 
@@ -175,11 +205,92 @@ Custom property | Description | Default
 						type: Boolean,
 						value: false
 					},
-					_items: {
+
+					/**
+					* The list of items, which will be set as paper-chips.
+					*/
+					items: {
 						type: Array,
 						value: function () {
 							return [];
 						}
+					},
+
+					/**
+					* Set to true to disable this input.
+					*/
+					disabled: {
+						type: Boolean,
+						value: false,
+					},
+
+					/**
+					* True, to add additional items.
+					*/
+					additionalItems: {
+						type: Boolean,
+						value: false
+					},
+
+					/**
+					* True, when duplicates are allowed in combination with additionalItems.
+					*/
+					allowDuplicates: {
+						type: Boolean,
+						value: false
+					},
+
+					/**
+					* Set to true to mark the input as required.
+					*/
+					required: {
+						type: Boolean,
+						value: false
+					},
+
+					/**
+					* Set to true to auto-validate the input value when it changes.
+					*/
+					autoValidate: {
+						type: Boolean,
+						value: false
+					},
+
+					/**
+					* The error message to display when the input is invalid.
+					*/
+					errorMessage: {
+						type: String
+					},
+
+					/**
+					* A pattern to validate the input with.
+					*/
+					pattern: {
+						type: String
+					},
+
+					/**
+					* Set this to specify the pattern.
+					*/
+					allowedPattern: {
+						type: String
+					},
+					
+					/**
+					* Set to true to prevent to change the input value.
+					*/
+					readonly: {
+						type: Boolean,
+						value: false
+					},
+					_autoValidate: {
+						type: Boolean,
+						value: false
+					},
+					_required: {
+						type: Boolean,
+						value: false
 					},
 					_selectedSuggestionId: {
 						type: Object,
@@ -205,20 +316,58 @@ Custom property | Description | Default
 				};
 			}
 
+			connectedCallback() {
+				super.connectedCallback();
+				this._autoValidate = this.autoValidate;
+				this._required = this.required;
+			}
+
+			_isEmpty(item) {
+				return item.length > 0;
+			}
+
+			_onKeyEnter() {
+				if (this.additionalItems && (this._inputValue != '' && this._inputValue != undefined)) {
+					this._saveTag(this._inputValue);
+					this.required = false;
+					this.autoValidate = false;
+					this._inputValue = '';
+				}
+			}
+
 			_onKeyBackspace(event) {
-				if (this._items.length != 0 &&
+				if (this.items.length != 0 &&
 					(this._inputValue == '' || this._inputValue == undefined)) {
 					this._removeLastItem();
+				}
+
+				if(this.items.length == 0) {
+					this.autoValidate = this._autoValidate;
+					this.required = this._required;
+				}
+			}
+
+			_onKeyEsc(event) {
+				this._inputValue = '';
+				this._hideAutocomplete();
+				this.$.paperInput.focus;
+			}
+
+			_onKeyUpOrDown(event) {
+				let lb = this.shadowRoot.querySelector('#listbox');
+
+				if (lb) {
+					lb.focus();
 				}
 			}
 
 			_removeLastItem() {
-				if (this._items.length != 0) {
-					let lastItemIndex = this._items.length - 1;
-					let lastItemname = this._items[lastItemIndex];
+				if (this.items.length != 0) {
+					let lastItemIndex = this.items.length - 1;
+					let lastItemname = this.items[lastItemIndex];
 
 					this._throwChipRemovedEvent(lastItemname);
-					this.splice('_items', -1, 1);
+					this.splice('items', -1, 1);
 				}
 			}
 
@@ -245,16 +394,15 @@ Custom property | Description | Default
 			_filterItems() {
 				let filteredByString = this.source.filter(element => this._filterBySearchString(element));
 
-				if (filteredByString.length > 0 && this._items.length) {
-					this._filteredSource = filteredByString.filter(element => this._filterByExistingPaperChip(
-						element));;
+				if (filteredByString.length > 0 && this.items.length) {
+					this._filteredSource = filteredByString.filter(element => this._filterByExistingPaperChip(element));
 				} else {
 					this._filteredSource = filteredByString;
 				}
 			}
 
 			_filterByExistingPaperChip(element) {
-				return this._items.indexOf(element.text) == -1;
+				return this.items.indexOf(element.text) == -1;
 			}
 
 			_filterBySearchString(element) {
@@ -262,16 +410,32 @@ Custom property | Description | Default
 			}
 
 			_selectPaperItem(event) {
-				this._saveTag(event.model.__data.item.text);
+				this._saveTag(event.model.item.text);
+				this.required = false;
+				this.autoValidate = false;
 				this._inputValue = '';
 				this._autocompleteClass = "hide";
 				this.$.paperInput.focus();
 			}
 
 			_saveTag(name) {
-				if (this._items.indexOf(name) == -1) {
-					this.push('_items', name);
+				if (this.allowDuplicates) {
+					this.push('items', name);
+					this._throwChipCreatedEvent(name);
+				} else if (this.items.indexOf(name) == -1) {
+					this.push('items', name);
+					this._throwChipCreatedEvent(name);
 				}
+			}
+
+			_throwChipCreatedEvent(name) {
+				this.dispatchEvent(new CustomEvent('chip-created', {
+						detail: {
+							'chipLabel': name
+						},
+						composed: true,
+						bubbles: true
+					}));
 			}
 
 			_hideAutocomplete() {
@@ -279,9 +443,9 @@ Custom property | Description | Default
 			}
 
 			_removeChip(event) {
-				const index = this._items.indexOf(event.detail.chipLabel);
+				const index = this.items.indexOf(event.detail.chipLabel);
 				if (index != -1) {
-					this.splice('_items', index, 1);
+					this.splice('items', index, 1);
 				}
 			}
 

@@ -119,6 +119,14 @@ $ polymer serve
     <link rel="import" href="paper-chip-input.html">
     <link rel="import" href="paper-chip.html">
     <next-code-block></next-code-block>
+
+	<script>
+
+    function validate() {
+        document.getElementById('inputForValidation').validate();
+	}
+	
+	</script>
   </template>
 </custom-element-demo>
 ```
@@ -126,12 +134,22 @@ $ polymer serve
 ```html
 <paper-chip-input label="+Add (Enter) -Delete (Backspace)" items='["one", "two", "three"]' closable></paper-chip-input>
 
+<paper-chip-input label="Input is readonly" items='["one", "two"]' readonly></paper-chip-input>
+
 <paper-chip-input always-float-label label="+Add (Enter) -Delete (Backspace)">
   <paper-chip label="Default Tag" slot="input"></paper-chip>
   <paper-chip label="Default Tag Closbale" closable slot="input"></paper-chip>
 </paper-chip-input>
 
 <paper-chip-input disabled label="+Add (Enter) -Delete (Backspace)" items='["one", "two", "three"]' closable></paper-chip-input>
+
+<paper-chip-input label="paper-chip-input cannot be empty" required auto-validate error-message="needs some text!" closable></paper-chip-input>
+
+<paper-chip-input label="this input will only let you type letters" auto-validate allowed-pattern="[a-zA-Z]" closable></paper-chip-input>
+
+<paper-chip-input style="display: inline-block; width: calc(100% - 75px);" id="inputForValidation" required label="this input is manually validated" pattern="[a-zA-Z]*" error-message="letters only!"></paper-chip-input>
+<button onclick="validate()">Validate</button>
+
 ```
 
 ## Example: Autocomplete field with tags
@@ -397,9 +415,10 @@ $ polymer serve
   label="+Add (Enter) -Delete (Backspace)" 
   closable></paper-chip-input-autocomplete>
 ```
+
 ## Browser Support
 
-![IE](https://cloud.githubusercontent.com/assets/398893/3528325/20373e76-078e-11e4-8e3a-1cb86cf506f0.png) | ![Chrome](https://cloud.githubusercontent.com/assets/398893/3528328/23bc7bc4-078e-11e4-8752-ba2809bf5cce.png) | ![Firefox](https://cloud.githubusercontent.com/assets/398893/3528329/26283ab0-078e-11e4-84d4-db2cf1009953.png) | ![Opera](https://cloud.githubusercontent.com/assets/398893/3528330/27ec9fa8-078e-11e4-95cb-709fd11dac16.png) | ![Safari](https://cloud.githubusercontent.com/assets/398893/3528331/29df8618-078e-11e4-8e3e-ed8ac738693f.png)
+![Edge](https://thomascybulski.github.io/browsers/edge_48x48.png) | ![Chrome](https://thomascybulski.github.io/browsers/chrome_48x48.png) | ![Firefox](https://thomascybulski.github.io/browsers/firefox_48x48.png) | ![Opera](https://thomascybulski.github.io/browsers/opera_48x48.png) | ![Safari](https://thomascybulski.github.io/browsers/safari-ios_48x48.png)
 --- | --- | --- | --- | --- |
 Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
@@ -409,5 +428,5 @@ Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 2. Create your feature branch: `git checkout -b my-new-feature`
 3. Commit your changes: `git commit -m 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+5. Submit a pull request 🤓
 
