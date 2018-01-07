@@ -329,7 +329,7 @@
     <app-header-layout>
       <app-header effects="waterfall" slot="header">
         <app-toolbar>
-          <a href="/#schibsted-media-platform" style="color:white;">
+          <a href="/" style="color:white;" on-click="backtoFront">
             <paper-icon-button icon="arrow-back"></paper-icon-button>
             <span class="sans-serif" style="color:white;">Back to front</span>
           </a>
@@ -349,38 +349,18 @@
     <div id="visual" class="project-image full center"></div>
 
     <div id="body"></div>
-<!--
-    <div class="full cta">
-      <div class="mediumlarge center grid" style="padding: 6rem 0;">
-        <div class="cta-case card center-text">
-        </div>
-        <div class="cta-case card center-text">
-          <paper-button on-click="_nextCase" invisible$="[[_shouldHideNext(project)]]">Next case &nbsp;
-            <iron-icon icon="arrow-forward"></iron-icon>
-          </paper-button>
-        </div>
-      </div>
-    </div>
 
-  -->
+
+
         <div class="full cta">
             <element-mywork></element-mywork>
         </div>
-<!--
-          <paper-button on-click="_nextCase" invisible$="[[_shouldHideNext(project)]]">Next case &nbsp;
-            <iron-icon icon="arrow-forward"></iron-icon>
-          </paper-button>
--->
-<!--
-          <paper-button>
-            <iron-icon icon="arrow-back"></iron-icon>
-            &nbsp; Back 
-          </paper-button>-->
+
 
         <div class="bottom-nav full">
           <div class="nav-items">
             <div class="nav-item">
-              <a href="/#schibsted-media-platform">
+              <a href="/" on-click="backtoFront">
                 <paper-icon-button icon="arrow-back"></paper-icon-button>
                 <span class="sans-serif">Back to front</span>
               </a>
@@ -401,6 +381,7 @@
   </template>
 
   <script>
+
     class ElementCasePage extends Polymer.Element {
       static get is() {
         return 'element-case-page';
@@ -418,6 +399,11 @@
           '_setVisual(project.mainVisual)',
           '_setBody(project.body)'
         ];
+      }
+
+
+      backtoFront() {
+        Polymer.AppLayout.scroll({top: 1000, behavior: 'smooth'});
       }
 
       _shouldHidePrevious() {
@@ -459,5 +445,6 @@
     }
 
     window.customElements.define(ElementCasePage.is, ElementCasePage);
+
   </script>
 </dom-module>

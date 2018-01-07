@@ -284,11 +284,9 @@
             <p class="ingress" style="color: var(--tint-light-grey);">Product designer and product manager from Norway, </br>currently based in Barcelona.</p>
           </div>
           <div class="center center-text" style="padding-top: 1rem;">
-            <a href="#intro">
-              <div class="icons">
-                <iron-icon icon="icons:arrow-downward" class="arrow animated bounce"></iron-icon>
-              </div>
-            </a>
+            <div class="icons" on-click="handleClick" style="cursor: pointer;">
+              <iron-icon icon="icons:arrow-downward" class="arrow animated bounce"></iron-icon>
+            </div>
           </div>
         </div>
       </div>
@@ -303,10 +301,17 @@
   </template>
 
   <script>
-    Polymer({
-      is: "element-header"
+    class ElementHeader extends Polymer.Element {
 
-    });
+      static get is() {return 'element-header'}
+
+      handleClick() {
+        Polymer.AppLayout.scroll({top: 500, behavior: 'smooth'});
+      }
+    }
+    customElements.define(ElementHeader.is, ElementHeader);
   </script>
+
+
 
 </dom-module>
