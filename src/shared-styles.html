@@ -163,6 +163,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-bottom: 0.25rem;
       }
 
+      b{
+        font-weight: bold;
+      }
+
       .sans-serif{
         font-family: -apple-system, BlinkMacSystemFont,
         "Segoe UI", "Roboto", "Oxygen",
@@ -229,6 +233,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .mediumlarge {
         max-width: var(--width-ml);
+      }
+
+      .wide {
+        max-width: 60rem;
       }
 
       .large {
@@ -415,6 +423,141 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           opacity: 0
         }
       }
+
+
+
+
+
+      /*=== Trigger  ===*/
+      .animate {
+        -webkit-animation-duration: 0.5s;
+        animation-duration: 0.5s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+      }
+
+        
+      /*=== Optional Delays, change values here  ===*/
+
+      .one {
+      -webkit-animation-delay: 0s;
+      -moz-animation-delay: 0s;
+      animation-delay: 0s;
+      }
+
+      .two {
+      -webkit-animation-delay: 200ms;
+      -moz-animation-delay: 200ms;
+      animation-delay: 200ms;
+      }
+
+      .three {
+      -webkit-animation-delay: 300ms;
+      -moz-animation-delay: 300ms;
+      animation-delay: 300ms;
+      }
+
+      .four {
+      -webkit-animation-delay: 400ms;
+      -moz-animation-delay: 400ms;
+      animation-delay: 400ms;
+      }
+
+
+      /*=== Animations start here  ===*/
+
+      /*==== FADE IN UP ===*/
+      @-webkit-keyframes fadeInUp {
+        from {
+          opacity: 0;
+          -webkit-transform: translate3d(0, 20px, 0);
+          transform: translate3d(0, 20px, 0);
+        }
+
+        to {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          -webkit-transform: translate3d(0, 20px, 0);
+          transform: translate3d(0, 20px, 0);
+        }
+
+        to {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+
+      @-webkit-keyframes slideInUp {
+        from {
+          opacity: 1;
+          -webkit-transform: translate3d(0, 20px, 0);
+          transform: translate3d(0, 20px, 0);
+        }
+
+        to {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+      @keyframes slideInUp {
+        from {
+          opacity: 1;
+          -webkit-transform: translate3d(0, 20px, 0);
+          transform: translate3d(0, 20px, 0);
+        }
+
+        to {
+          opacity: 1;
+          -webkit-transform: none;
+          transform: none;
+        }
+      }
+
+      .fadeInUp {
+        -webkit-animation-name: fadeInUp;
+        animation-name: fadeInUp;
+      }
+
+      .slideInUp {
+        -webkit-animation-name: slideInUp;
+        animation-name: slideInUp;
+      }
+
+      /*=== FADE IN  ===*/
+      @-webkit-keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+      .fadeIn {
+          -webkit-animation-name: fadeIn;
+        animation-name: fadeIn;
+      }
+
+
+
+
 
     </style>
 

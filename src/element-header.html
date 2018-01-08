@@ -43,8 +43,8 @@
       }
 
       .avatar {
-        height: 14rem;
-        width: 14rem;
+        height: 12rem;
+        width: 12rem;
         margin-top: 1em;
         margin-bottom: 1em;
         --img: {
@@ -276,15 +276,15 @@
 
       <div class="profile">
         <div class="medium center" style="padding: 1rem;">
-          <div class="avatar-container">
-            <lazy-image fade alt="Profile picture" class="avatar" src="images/profile.jpg" height="164" width="164"></lazy-image>
+          <div class="avatar-container animate slideInUp one">
+            <lazy-image alt="Profile picture" class="avatar" src="images/profile.jpg" height="164" width="164"></lazy-image>
           </div>
           <div>
-            <h1 class="iam center">I am Eirik<!--<lazy-image fade alt="I am Eirik" src="images/iam.svg" height="48" width="228"></lazy-image>--></h1>
-            <p class="ingress" style="color: var(--tint-light-grey);">Product designer and product manager from Norway, </br>currently based in Barcelona.</p>
+            <h1 class="iam center animate fadeInUp two">I am Eirik<!--<lazy-image fade alt="I am Eirik" src="images/iam.svg" height="48" width="228"></lazy-image>--></h1>
+            <p class="ingress animate fadeInUp three" style="color: var(--tint-light-grey);">Product designer and product manager from Norway, </br>currently based in Barcelona.</p>
           </div>
           <div class="center center-text" style="padding-top: 1rem;">
-            <div class="icons" on-click="handleClick" style="cursor: pointer;">
+            <div class="icons animate fadeInUp four" on-click="handleClick" style="cursor: pointer;">
               <iron-icon icon="icons:arrow-downward" class="arrow animated bounce"></iron-icon>
             </div>
           </div>
