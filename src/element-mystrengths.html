@@ -7,6 +7,7 @@
 <link rel="import" href="../bower_components/app-layout/app-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-box/app-box.html">
 <link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
 
 <link rel="import" href="shared-styles.html">
 
@@ -26,32 +27,57 @@
         padding: 4rem 1rem;
       }
 
-        app-box {
-          height: 600px;
-          --app-box-background-front-layer: {
-            background-image: url(/images/1.jpg);
-            background-position: 50% 50%;
-          };
-        }
     </style>
 
-      <app-box style="height: 600px;" effects="parallax-background">
-        
-        <h2>My strengths</h2>
+      <section>
 
-        
+        <div class="mediumlarge center center-text">
 
-      </app-box>
+          <h2>My strengths</h2>
+
+
+          <paper-tabs selected="0" scrollable style="max-width: 40rem; margin: 0 auto;">
+            <paper-tab on-click="handleClick" hidden="true">Futuristic</paper-tab>
+            <paper-tab on-click="handleClick">Arranger</paper-tab>
+            <paper-tab on-click="handleClick" class$="{{yourclass}}">Input</paper-tab>
+            <paper-tab on-click="handleClick">Belief</paper-tab>
+            <paper-tab on-click="handleClick">Self-Assurance</paper-tab>
+          </paper-tabs>
+
+  <!--
+          <h3>Futuristic</h3>
+          People who are especially talented in the Futuristic theme are inspired by the future and what could be. They inspire others with their visions of the future.
+
+          <h3>Arranger</h3>
+          People who are especially talented in the Arranger theme can organize, but they also have a flexibility that complements this ability. They like to figure out how all of the pieces and resources can be arranged for maximum productivity.
+
+          <h3>Input</h3>
+          People who are especially talented in the Input theme have a craving to know more. Often they like to collect and archive all kinds of information.
+
+          <h3>Belief</h3>
+          People who are especially talented in the Belief theme have certain core values that are unchanging. Out of these values emerges a defined purpose for their life.
+
+          <h3>Self-Assurance</h3>
+          People who are especially talented in the Self-Assurance theme feel confident in their ability to manage their own lives. They possess an inner compass that gives them confidence that their decisions are right.
+          -->
+
+        </div>
+
+      </section>>
 
   </template>
 
 <script>
+  class MyStrengths extends Polymer.Element {
 
-	Polymer({
-		is: "element-mystrengths"
+    static get is() {return 'element-mystrengths'}
 
-	});
-	
+    handleClick() {
+      yourclass('test');
+      console.log('Ow!');
+    }
+  }
+  customElements.define(MyStrengths.is, MyStrengths);
 </script>
 
 </dom-module>
